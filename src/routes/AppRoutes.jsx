@@ -16,6 +16,7 @@ import Mycourses from "../user/Mycourses";
 import Orders from "../user/Orders";
 import Profile from "../user/Profile";
 import Users from "../pages/admin/Users/Users";
+import Coursecategory from "../pages/admin/Coursecategory/Coursecategory";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -31,13 +32,10 @@ const AppRoutes = () => {
         }
       >
         <Route path="/dashboard" element={<Dashboard />} />
-
         <Route path="/blogs" element={<BlogList />} />
-
         <Route path="/blogs/add" element={<AddBlog />} />
         <Route path="/blogs/edit/:id" element={<AddBlog />} />
         <Route path="/courses" element={<Courses />} />
-
         <Route path="/courses/add" element={<AddCourses />} />
         <Route path="/courses/edit/:id" element={<AddCourses />} />
         <Route path="/user-dashboard" element={<Userdashboard />} />
@@ -45,6 +43,7 @@ const AppRoutes = () => {
         <Route path="/my-orders" element={<Orders />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/users" element={<Users />} />
+        <Route path="/coursecategory" element={<Coursecategory />} />
         
 
       </Route>

@@ -22,8 +22,7 @@ export const getSingleCourse =
     return response.data;
   };
 
-export const createCourse =
-  async (data) => {
+export const createCourse = async (data) => {
     const response =
       await axiosInstance.post(
         "/courses",

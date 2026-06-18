@@ -35,6 +35,11 @@ const Sidebar = ({
       path: "/users",
       icon: <FiUsers />,
     },
+    {
+      name: "Course Category",
+      path: "/coursecategory",
+      icon: <IoBookOutline />,
+    },
   ];
 
   const userSidebar = [

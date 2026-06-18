@@ -9,12 +9,15 @@ import Input from "../../components/common/Input";
 // import { convertToBase64 } from "../../utils/fileUtils";
 import { useCreateCourse, useSingleCourse, useUpdateCourse } from "../../hooks/useCourses";
 import { useNavigate, useParams } from "react-router-dom";
+import { useCategories } from "../../hooks/useCategories";
+// import { usegetCategories } from "../../hooks/useCategories";
+// import { useCategories } from "../../hooks/useCategories";
 
 export default function AddCourses() {
       const navigate = useNavigate();
     const { id } = useParams();
-  const [thumbnailPreview, setThumbnailPreview] =
-    useState("");
+  const [thumbnailPreview, setThumbnailPreview] =useState("");
+  const { data: categories } =  useCategories();
 
   const [description, setDescription] =
     useState("");
@@ -47,6 +50,10 @@ const {
 
     formData.append("title", data.title);
     formData.append("slug", data.slug);
+    formData.append(
+  "category",
+  data.category
+);
     formData.append(
       "shortDescription",
       data.shortDescription
@@ -142,6 +149,9 @@ const {
       slug: courseData.data.slug,
       shortDescription:
         courseData.data.shortDescription,
+         category:
+    courseData.data.category?._id ||
+    courseData.data.category,
       price: courseData.data.price,
       discountPrice:
         courseData.data.discountPrice,
@@ -158,9 +168,13 @@ const {
       courseData.data.description
     );
 
-   setThumbnailPreview(
-  `http://localhost:5000${courseData.data.thumbnail}`
-);
+//   const file = e.target.files[0];
+
+// if (file) {
+//   setThumbnailPreview(
+//     URL.createObjectURL(file)
+//   );
+// }
 
     setVideoType(
       courseData.data.videoType ||
@@ -181,12 +195,39 @@ const {
       />
 
       <div className="bg-white p-6 rounded-xl shadow">
+
+
+
+
+
         <form
           onSubmit={handleSubmit(
             onSubmit
           )}
           className="space-y-5"
         >
+        <div className="mb-3">
+          <label className="block mb-1 text-[12px] font-medium text-gray-700">
+            Category
+          </label>
+
+          <select {...register("category")} className="w-full border p-2 rounded text-[14px]">
+    <option value="">
+      Select Category
+    </option>
+
+    {categories?.data?.map(
+      (item) => (
+        <option
+          key={item._id}
+          value={item._id}
+        >
+          {item.name}
+        </option>
+      )
+    )}
+  </select>
+        </div>
           {/* Title */}
           <Input
             label="Title"
@@ -268,13 +309,13 @@ const {
             />
 
             <div>
-              <label className="block mb-1 text-sm font-medium">
+              <label className="block mb-1 text-[12px] font-medium text-gray-700">
                 Level
               </label>
 
               <select
                 {...register("level")}
-                className="w-full border h-10 rounded-md px-3"
+                className="w-full border h-10 rounded-md px-3 text-[14px]"
               >
                 <option value="Beginner">
                   Beginner
@@ -294,13 +335,13 @@ const {
           {/* Status + Video Type */}
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block mb-1 text-sm font-medium">
+              <label className="block mb-1 text-[12px] font-medium text-gray-700">
                 Status
               </label>
 
               <select
                 {...register("status")}
-                className="w-full border h-10 rounded-md px-3"
+                className="w-full border h-10 rounded-md px-3 text-[14px]"
               >
                 <option value="active">
                   Active
@@ -313,7 +354,7 @@ const {
             </div>
 
             <div>
-              <label className="block mb-1 text-sm font-medium">
+              <label className="block mb-1 text-[12px] font-medium text-gray-700">
                 Video Type
               </label>
 
@@ -324,7 +365,7 @@ const {
                     e.target.value
                   )
                 }
-                className="w-full border h-10 rounded-md px-3"
+                className="w-full border h-10 rounded-md px-3 text-[14px]"
               >
                 <option value="url">
                   Video URL

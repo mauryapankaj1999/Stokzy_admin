@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { deleteUser, getUsers, updateUser } from "../api/userApi";
+import { changePassword, deleteUser, getProfile, getUsers, updateUser } from "../api/userApi";
 
 export const useUsers = () => {
   return useQuery({
@@ -52,5 +52,21 @@ export const useDeleteUser =
           }
         );
       },
+    });
+  };
+
+  export const useChangePassword =
+  () => {
+    return useMutation({
+      mutationFn:
+        changePassword,
+    });
+  };
+
+  export const useProfile =
+  () => {
+    return useQuery({
+      queryKey: ["profile"],
+      queryFn: getProfile,
     });
   };
