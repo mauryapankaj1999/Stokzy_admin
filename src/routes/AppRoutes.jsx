@@ -17,6 +17,8 @@ import Orders from "../user/Orders";
 import Profile from "../user/Profile";
 import Users from "../pages/admin/Users/Users";
 import Coursecategory from "../pages/admin/Coursecategory/Coursecategory";
+import Enrollments from "../user/Enrollments";
+import UserEnrollments from "../pages/admin/UserEnrollments";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -44,6 +46,8 @@ const AppRoutes = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/users" element={<Users />} />
         <Route path="/coursecategory" element={<Coursecategory />} />
+        <Route path="/enrollments" element={<Enrollments />} />
+        <Route path="/uer-enrollments" element={<UserEnrollments />} />
         
 
       </Route>

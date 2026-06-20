@@ -40,6 +40,11 @@ const Sidebar = ({
       path: "/coursecategory",
       icon: <IoBookOutline />,
     },
+    {
+      name: "User Enrollments",
+      path: "/uer-enrollments",
+      icon: <IoBookOutline />,
+    },
   ];
 
   const userSidebar = [
@@ -61,6 +66,11 @@ const Sidebar = ({
     {
       name: "Orders",
       path: "/my-orders",
+      icon: <IoSettingsOutline />,
+    },
+    {
+      name: "Enrollments",
+      path: "/enrollments",
       icon: <IoSettingsOutline />,
     },
   ];
