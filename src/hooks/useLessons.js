@@ -1,62 +1,54 @@
 import {
-  useMutation,
   useQuery,
+  useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
 
 import {
-  getCourses,
-  getSingleCourse,
-  createCourse,
-  updateCourse,
-  deleteCourse,
-  getMyCourseDetails,
-} from "../api/courseApi";
-import { getMyCourses } from "../api/enrollmentApi";
+  getLessonsByModule,
+  createLesson,
+  updateLesson,
+  deleteLesson,
+  getAllLessons,
+  getSingleLesson,
+} from "../api/lessonApi";
 
-export const useCourses = (
-  page = 1,
-  limit = 10
+
+// Get Lessons By Module
+export const useLessons = (
+  moduleId
 ) => {
   return useQuery({
     queryKey: [
-      "courses",
-      page,
-      limit,
+      "lessons",
+      moduleId,
     ],
+
     queryFn: () =>
-      getCourses(page, limit),
+      getLessonsByModule(
+        moduleId
+      ),
+
+    enabled: !!moduleId,
   });
 };
 
-export const useSingleCourse = (
-  id
-) => {
-  return useQuery({
-    queryKey: [
-      "course",
-      id,
-    ],
-    queryFn: () =>
-      getSingleCourse(id),
-    enabled: !!id,
-  });
-};
 
-export const useCreateCourse =
+// Create Lesson
+export const useCreateLesson =
   () => {
     const queryClient =
       useQueryClient();
 
     return useMutation({
       mutationFn:
-        createCourse,
+        createLesson,
 
       onSuccess: () => {
         queryClient.invalidateQueries(
           {
             queryKey: [
-              "courses",
+              "lessons",
             ],
           }
         );
@@ -64,20 +56,22 @@ export const useCreateCourse =
     });
   };
 
-export const useUpdateCourse =
+
+// Update Lesson
+export const useUpdateLesson =
   () => {
     const queryClient =
       useQueryClient();
 
     return useMutation({
       mutationFn:
-        updateCourse,
+        updateLesson,
 
       onSuccess: () => {
         queryClient.invalidateQueries(
           {
             queryKey: [
-              "courses",
+              "lessons",
             ],
           }
         );
@@ -85,46 +79,48 @@ export const useUpdateCourse =
     });
   };
 
-export const useDeleteCourse =
+
+// Delete Lesson
+export const useDeleteLesson =
   () => {
     const queryClient =
       useQueryClient();
 
     return useMutation({
       mutationFn:
-        deleteCourse,
+        deleteLesson,
 
       onSuccess: () => {
         queryClient.invalidateQueries(
           {
             queryKey: [
-              "courses",
+              "lessons",
             ],
           }
         );
       },
     });
   };
-  export const useMyCourses =
+  export const useAllLessons =
   () => {
     return useQuery({
       queryKey: [
-        "myCourses",
+        "lessons",
       ],
       queryFn:
-        getMyCourses,
+        getAllLessons,
     });
-  }
+  };
 
-export const useMyCourseDetails =
+  export const useSingleLesson =
   (id) => {
     return useQuery({
       queryKey: [
-        "course",
+        "lesson",
         id,
       ],
       queryFn: () =>
-        getMyCourseDetails(
+        getSingleLesson(
           id
         ),
       enabled: !!id,

@@ -31,6 +31,16 @@ const Sidebar = ({
       icon: <IoBookOutline />,
     },
     {
+      name: "Modules",
+      path: "/modules",
+      icon: <IoBookOutline />,
+    },
+    {
+      name: "Lessons",
+      path: "/lessons",
+      icon: <IoBookOutline />,
+    },
+    {
       name: "Users",
       path: "/users",
       icon: <FiUsers />,
@@ -92,8 +102,8 @@ const Sidebar = ({
       )}
 
       <div
-        className={`
-          fixed lg:static
+        className={ `
+          
           top-0 left-0
           z-50
           h-screen
@@ -105,6 +115,7 @@ const Sidebar = ({
           duration-300
           ease-in-out
           border-r border
+          sidebarfixed
           ${
             sidebarOpen
               ? "translate-x-0"

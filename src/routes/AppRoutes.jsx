@@ -19,6 +19,11 @@ import Users from "../pages/admin/Users/Users";
 import Coursecategory from "../pages/admin/Coursecategory/Coursecategory";
 import Enrollments from "../user/Enrollments";
 import UserEnrollments from "../pages/admin/UserEnrollments";
+import CourseDetails from "../user/CourseDetails";
+import Lessons from "../pages/admin/Lessons/Lessons";
+import Modules from "../pages/admin/Modules/Modules";
+import AddModal from "../pages/admin/Modules/Add";
+import AddLesson from "../pages/admin/Lessons/Add";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -48,6 +53,17 @@ const AppRoutes = () => {
         <Route path="/coursecategory" element={<Coursecategory />} />
         <Route path="/enrollments" element={<Enrollments />} />
         <Route path="/uer-enrollments" element={<UserEnrollments />} />
+        <Route path="/course/:id"   element={<CourseDetails />} />
+        <Route path="/lessons" element={<Lessons />} />
+        <Route path="/modules" element={<Modules />} />
+        <Route path="/modules/add" element={<AddModal />} />
+        <Route path="/modules/edit/:id" element={<AddModal />} />
+        <Route path="/lessons/add" element={<AddLesson />} />
+        <Route path="/lessons/edit/:id"  element={<AddLesson />}
+/>
+        
+
+
         
 
       </Route>

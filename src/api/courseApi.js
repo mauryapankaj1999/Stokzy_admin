@@ -55,3 +55,12 @@ export const deleteCourse =
 
     return response.data;
   };
+export const getMyCourseDetails =
+  async (id) => {
+    const res =
+      await axiosInstance.get(
+        `/enrollments/course/${id}`
+      );
+
+    return res.data;
+  };

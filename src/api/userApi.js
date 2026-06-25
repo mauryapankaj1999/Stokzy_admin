@@ -50,3 +50,14 @@ export const deleteUser =
 
     return response.data;
   };
+  export const updateProfile = async (
+  data
+) => {
+  const response =
+    await axiosInstance.put(
+      "/users/profile",
+      data
+    );
+
+  return response.data;
+};

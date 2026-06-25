@@ -1,57 +1,34 @@
 import { useForm } from "react-hook-form";
-import { Navigate,useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
+import { showError, showSuccess } from "../utils/toast";
 
 const Login = () => {
-
-  
-
   const navigate = useNavigate();
 
-  const {
-    register,
-    handleSubmit,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
- const onSubmit = async (data) => {
-  try {
-    const res = await loginUser(data);
-
-    console.log(res);
-
-    if (res.success) {
-      localStorage.setItem(
-        "token",
-        res.token
-      );
-
-      localStorage.setItem(
-        "user",
-        JSON.stringify(res.user)
-      );
-
-      localStorage.setItem(
-        "role",
-        res.user.role
-      );
-
-     if (res.user.role === "admin") {
-  navigate("/dashboard");
-} else {
-  navigate("/user-dashboard");
-}
-    } else {
-      alert("Login Failed");
+  const onSubmit = async (data) => {
+    try {
+      const res = await loginUser(data);
+      console.log(res);
+      if (res.success) {
+        localStorage.setItem("token", res.token);
+        localStorage.setItem("user", JSON.stringify(res.user));
+        localStorage.setItem("role", res.user.role);
+        if (res.user.role === "admin") {
+          navigate("/dashboard");
+        } else {
+          navigate("/user-dashboard");
+        }
+      } else {
+        showError("Login Failed");
+      }
+    } catch (error) {
+      console.log(error);
+      showError(error?.response?.data?.message || "Login Failed");
     }
-  } catch (error) {
-    console.log(error);
-
-    alert(
-      error?.response?.data?.message ||
-        "Login Failed"
-    );
-  }
-};
+  };
   const token = localStorage.getItem("token");
 
   if (token) {
@@ -67,17 +44,13 @@ const Login = () => {
         <div className="relative z-10 flex flex-col justify-center px-16 text-white">
           <h1 className="text-5xl font-bold leading-tight">
             Welcome to
-            <span className="block text-green-400">
-              Stokzy Admin
-            </span>
+            <span className="block text-green-400">Stokzy Admin</span>
           </h1>
 
           <p className="mt-6 text-lg text-gray-300 max-w-lg">
-            Manage blogs, courses, users and platform
-            content from one powerful dashboard.
+            Manage blogs, courses, users and platform content from one powerful
+            dashboard.
           </p>
-
-       
         </div>
       </div>
 
@@ -95,19 +68,12 @@ const Login = () => {
               Sign In
             </h2> */}
 
-            <p className="mt-2 text-gray-500">
-              Login to access your dashboard
-            </p>
+            <p className="mt-2 text-gray-500">Login to access your dashboard</p>
           </div>
 
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="mt-8 space-y-5"
-          >
+          <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-5">
             <div>
-              <label className="block text-sm font-medium mb-2">
-                Email
-              </label>
+              <label className="block text-sm font-medium mb-2">Email</label>
 
               <input
                 type="email"
@@ -118,9 +84,7 @@ const Login = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">
-                Password
-              </label>
+              <label className="block text-sm font-medium mb-2">Password</label>
 
               <input
                 type="password"

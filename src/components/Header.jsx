@@ -61,7 +61,7 @@ const Header = ({ setSidebarOpen }) => {
 
   return (
     <>
-      <div className="py-4 bg-white shadow px-6 flex items-center justify-between">
+      <div className="py-4 bg-white shadow px-6 flex items-center justify-between sticky top-0 z-50">
         <div className="flex items-center gap-3">
           <button className="lg:hidden" onClick={() => setSidebarOpen(true)}>
             <HiOutlineMenuAlt2 size={28} />
@@ -90,7 +90,7 @@ const Header = ({ setSidebarOpen }) => {
                 className="px-4 py-2 border-b cursor-pointer hover:bg-gray-50 transition"
                 onClick={() => setOpenmodal(true)}
               >
-                <p className="text-[14px] text-gray-500">Change Password</p>
+                <p className="text-[14px] font-medium  text-gray-500">Change Password</p>
               </div>
 
               <button

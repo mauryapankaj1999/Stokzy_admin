@@ -35,3 +35,12 @@ export const getMyCourses =
 
     return res.data;
   };
+  // export const getMyCourses =
+  // async () => {
+  //   const res =
+  //     await axiosInstance.get(
+  //       "/enrollments/my-courses"
+  //     );
+
+  //   return res.data;
+  // };

@@ -14,6 +14,7 @@ export default function ToastProvider() {
           color: "#0f172a",
           borderRadius: "12px",
           padding: "14px 18px",
+          zIndex: 999999999999999999999,
         },
 
         success: {

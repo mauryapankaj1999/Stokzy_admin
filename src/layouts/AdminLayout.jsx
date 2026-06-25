@@ -9,10 +9,10 @@ const AdminLayout = () => {
     <div className="flex">
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-      <div className="flex-1 min-h-screen bg-gray-100">
+      <div className="flex-1 min-h-screen bg-gray-100 mainwapper">
         <Header setSidebarOpen={setSidebarOpen} />
 
-        <div className="p-6">
+        <div className="p-6" style={{ background: "#f0faf0" }}>
           <Outlet />
         </div>
       </div>
